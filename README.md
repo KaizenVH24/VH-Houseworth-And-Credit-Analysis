@@ -99,7 +99,7 @@ Current performance (after realism improvements):
 ---
 
 ## Project Structure
-
+```
 │
 ├── app.py
 ├── generate_dataset.py
@@ -113,7 +113,7 @@ Current performance (after realism improvements):
 │
 ├── requirements.txt
 └── README.md
-
+```
 
 ---
 

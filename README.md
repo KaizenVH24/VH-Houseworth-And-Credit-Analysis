@@ -6,6 +6,8 @@ This project estimates residential property prices across major Indian cities, f
 
 It is designed as a practical, end-to-end ML application - from dataset generation and model validation to UI design and deployment.
 
+
+Project live at - https://vh-houseworth-and-credit-analysis.streamlit.app/
 ---
 
 ## What This Project Does
@@ -152,3 +154,4 @@ VH24 aka Vinay Hulsurkar
 - GitHub: https://github.com/KaizenVH24  
 - LinkedIn: https://linkedin.com/in/vinayhulsurkar  
 - LeetCode: https://leetcode.com/vinayhulsurkar24  
+- Mail: vinayhulsurkar@gmail.com

@@ -4,14 +4,11 @@ import joblib
 import numpy as np
 import plotly.graph_objects as go
 
-# ---------------------------------------------------
 # Page Config
-# ---------------------------------------------------
 st.set_page_config(page_title="VH-HouseWorth & Credit Analysis", layout="wide")
 
-# ---------------------------------------------------
+
 # Styling (Clean White + Blue)
-# ---------------------------------------------------
 st.markdown("""
 <style>
 body { background-color: #ffffff; color: #111827; }
@@ -42,9 +39,8 @@ body { background-color: #ffffff; color: #111827; }
 </style>
 """, unsafe_allow_html=True)
 
-# ---------------------------------------------------
+
 # Helper: Format Currency
-# ---------------------------------------------------
 def format_currency(value):
     if value >= 1e7:
         return f"{value/1e7:.2f} Cr"
@@ -53,15 +49,14 @@ def format_currency(value):
     else:
         return f"{value:,.0f}"
 
-# ---------------------------------------------------
+
 # Load Model & Data
-# ---------------------------------------------------
 model = joblib.load("models/house_price_model.pkl")
 data = pd.read_csv("data/housing_data.csv")
 
 growth_rates = {
-    "Mumbai": 0.07,
-    "Delhi": 0.065,
+    "Mumbai": 0.085,
+    "Delhi": 0.075,
     "Bengaluru": 0.09,
     "Pune": 0.08,
     "Hyderabad": 0.085,
@@ -72,16 +67,15 @@ growth_rates = {
     "Lucknow": 0.055
 }
 
-# ---------------------------------------------------
+
 # Header
-# ---------------------------------------------------
 st.markdown("<h1 style='text-align:center;'>VH-HouseWorth & Credit Analysis</h1>", unsafe_allow_html=True)
 st.markdown("<p style='text-align:center;color:#6b7280;'>Property Valuation & Financial Risk Intelligence</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align:center;color:#6b7280;'>*As per RBI House Price Index, across India the average annual growth rate is 9.82% (Year 2010 to 2025)</p>", unsafe_allow_html=True)
 st.markdown("---")
 
-# =====================================================
+
 # PROPERTY SECTION
-# =====================================================
 
 with st.expander("Property Valuation & Forecast", expanded=True):
 
@@ -94,7 +88,7 @@ with st.expander("Property Valuation & Forecast", expanded=True):
         bathrooms = st.slider("Bathrooms", 1, 4, 2)
 
     with col2:
-        parking = st.selectbox("Parking Available", [0, 1])
+        parking = st.selectbox("Parking Available [0: No, 1: Yes]", [0, 1])
         location = st.selectbox("Location Type", ["Premium", "Standard", "Developing"])
         age = st.slider("Property Age (years)", 0, 30, 5)
         furnishing = st.selectbox("Furnishing", ["Furnished", "Semi-Furnished", "Unfurnished"])
@@ -136,6 +130,7 @@ with st.expander("Property Valuation & Forecast", expanded=True):
         price_7 = prediction * ((1 + rate) ** 7)
 
         st.markdown(f"Projected values are calculated based on estimated current value at **{rate*100:.1f}% annual growth rate**.")
+        st.markdown("*As per RBI House Price Index, across India the average annual growth rate is 9.82% ")
 
         f1, f2, f3 = st.columns(3)
         f1.metric("3 Years", format_currency(price_3))
@@ -165,9 +160,8 @@ with st.expander("Property Valuation & Forecast", expanded=True):
 
         st.plotly_chart(fig, use_container_width=True)
 
-# =====================================================
+
 # CREDIT SECTION
-# =====================================================
 
 with st.expander("Credit & Loan Risk Assessment", expanded=False):
 
@@ -236,15 +230,15 @@ with st.expander("Credit & Loan Risk Assessment", expanded=False):
 
         st.plotly_chart(fig2, use_container_width=True)
 
-# ---------------------------------------------------
+
 # Footer
-# ---------------------------------------------------
 st.markdown("""
 <div class="footer">
 Built by Vinay Hulsurkar aka VH24<br>
-&copy VH24 2026 <br>
+&copy 2026 VH-HouseWorth & Credit Analysis<br>
 <a href="https://github.com/KaizenVH24" target="_blank">GitHub</a> |
 <a href="https://linkedin.com/in/vinayhulsurkar" target="_blank">LinkedIn</a> |
-<a href="https://leetcode.com/vinayhulsurkar24" target="_blank">LeetCode</a>
+<a href="https://leetcode.com/vinayhulsurkar24" target="_blank">LeetCode</a> | 
+<a href="mailto:vinayhulsurkar@gmail.com">Mail</a>
 </div>
 """, unsafe_allow_html=True)

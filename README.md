@@ -8,6 +8,7 @@ It is designed as a practical, end-to-end ML application - from dataset generati
 
 
 Project live at - https://vh-houseworth-and-credit-analysis.streamlit.app/
+
 ---
 
 ## What This Project Does
